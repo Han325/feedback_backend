@@ -12,7 +12,7 @@ from .utils import (
 @csrf_exempt
 @check_method("GET")
 def get_feedback(request):
-	feedbacks = Feedback.objects.all()
+	feedbacks = Feedback.objects.all().order_by("-date_created")
 	serializer = FeedbackSerializer(feedbacks, many=True)
 	return JsonResponse(
 		{
